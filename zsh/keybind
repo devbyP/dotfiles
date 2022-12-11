@@ -1,0 +1,3 @@
+# the primagen tmux-sessionizer shortkey
+# quick fzf open tmux
+bindkey -s '^f' 'tmux-sessionizer^M'
