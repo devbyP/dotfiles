@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# A simple script to adjust screen brightness using brightnessctl,
+# without turnoff screen backlight completely (min value=1).
+#
+# notify user with the brightness percent after adjusted.
+
+
+current=$(brightnessctl g)
+
+max=$(brightnessctl m)
+tenPercent=$(($max*10/100))
+
+# dim the light.
+if [[ $1 = "-d" ]]; then
+
+    if [[ $current -le $tenPercent ]]; then
+        brightnessctl s 1
+    else
+        brightnessctl s $tenPercent-
+    fi
+fi
+
+# increase brightness
+if [[ $1 = "-b" ]]; then
+    brightnessctl s $tenPercent+
+fi
+
+percent=$(brightnessctl | grep "Current brightness" | cut -d "(" -f2 | cut -d ")" -f1)
+notify-send -r 1 "brightness level" "$percent"

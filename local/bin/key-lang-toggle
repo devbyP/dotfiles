@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# script to toggle between th and en languages
+
+LG=$(setxkbmap -query | awk '/layout/{print $2}') 
+
+if [ "$LG" = us ]
+then
+    setxkbmap -layout th
+else
+    setxkbmap -layout us
+fi
+
+exit 0
