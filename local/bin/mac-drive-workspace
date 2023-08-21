@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if [ "$TERM_PROGRAM" = tmux ]; then
+  echo 'In tmux'
+  exit 0
+fi
+
+if ! tmux has-session -t=processes 2> /dev/null; then
+    tmux new-session -s processes -c ~/workspace/mac-drive/ -d
+fi
+if ! tmux has-session -t=mac-drive 2> /dev/null; then
+    tmux new-session -s mac-drive -c ~/workspace/mac-drive/
+else
+    tmux a -t mac-drive
+fi
