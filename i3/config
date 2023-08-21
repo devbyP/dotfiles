@@ -106,9 +106,9 @@ bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientation
-# bindsym $mod+h split h;exec notify-send 'tile horizontally'
-# bindsym $mod+v split v;exec notify-send 'tile vertically'
-# bindsym $mod+q split toggle
+bindsym $mod+c split h;exec notify-send 'tile horizontally'
+bindsym $mod+v split v;exec notify-send 'tile vertically'
+bindsym $mod+q split toggle
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -287,7 +287,7 @@ exec --no-startup-id clipit
 # exec_always --no-startup-id sbxkb
 exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 30 -locker blurlock
+exec --no-startup-id xautolock -time 20 -locker "blurlock -n" -killtime 10 -killer "systemctl suspend"
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
@@ -426,6 +426,6 @@ mode "$mode_gaps_outer" {
 bindsym $mod+comma exec "brightness-adj -d"
 bindsym $mod+period exec "brightness-adj -b"
 
-bindsym $mod+Shift+less exec "amixer set Master 10%-"
-bindsym $mod+Shift+greater exec "amixer set Master 10%+"
+bindsym $mod+Shift+less exec "amixer set Master 5%-"
+bindsym $mod+Shift+greater exec "amixer set Master 5%+"
 bindsym $mod+Shift+m exec "amixer set Master toggle"
