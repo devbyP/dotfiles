@@ -1,0 +1,49 @@
+# Default config for sway
+#
+# Copy this to ~/.config/sway/config and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
+
+# Styles
+set $theme /usr/share/ubuntusway/themes/yaru-sway
+
+# theme variables
+include $theme/variables
+
+# Global variables
+include /etc/sway/variables
+
+# User variables
+include $HOME/.config/sway/variables.d/*.conf
+
+include /etc/sway/outputs/*.conf
+include /etc/sway/inputs/*.conf
+
+# include modes
+include /etc/sway/modes/*.conf
+
+# Additional configs
+include /etc/sway/config.d/*.conf
+
+# User config
+include $HOME/.config/sway/config.d/*.conf
+
+# Include nwg-displays config's (if exists)
+include ~/.config/sway/outputs
+include ~/.config/sway/workspaces
+
+bindsym $mod+F2 exec $browser
+
+bindsym Ctrl+1 workspace number 1
+bindsym Ctrl+2 workspace number 2
+bindsym Ctrl+3 workspace number 3
+bindsym Ctrl+4 workspace number 4
+bindsym Ctrl+5 workspace number 5
+bindsym Ctrl+6 workspace number 6
+bindsym Ctrl+7 workspace number 7
+bindsym Ctrl+8 workspace number 8
+bindsym Ctrl+9 workspace number 9
+bindsym Ctrl+0 workspace number 10
+
+bindsym $mod+comma exec "brightness-adj -d"
+bindsym $mod+period exec "brightness-adj -b"
