@@ -9,7 +9,7 @@ elif [[ $# -eq 2 ]]; then # added session name argumant or use default session n
     selected_name=$2
 else
     # change find arguments to target workspace for fzf.
-    selected=$(find ~/workspace/prototype/macDrive ~/workspace -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(find ~/workspace -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then
