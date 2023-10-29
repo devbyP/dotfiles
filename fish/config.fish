@@ -8,6 +8,7 @@ set -x PATH $PATH $FLYCTL_INSTALL/bin
 set -x PATH $PATH $HOME/.local/tmux-workspaces
 
 bind \cf 'tmux-sessionizer'
+bind \ca 'tmux a'
 
 alias vim="nvim"
 alias lsws="ls ~/.local/tmux-workspaces"
