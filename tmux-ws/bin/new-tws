@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+print_help () {
+    echo "create new tmux workspaces"
+    echo "  -d workspace directory"
+    echo "  -n workspace name"
+    echo "  -f filename in tmux-workspaces directory"
+    echo ""
+    echo "all flag require to create a workspace"
+    echo "example:"
+    echo "  new-tws -d \"~/workspace/algorithm\" -n algo-ws -f algows"
+}
+
+file_name=
+write_ws_name=
+write_ws_dir=
+
+while getopts ":d:n:f:" flag; do
+    case $flag in
+        d)
+            write_ws_dir=$OPTARG
+            ;;
+        n)
+            write_ws_name=$OPTARG
+            ;;
+        f)
+            file_name=$OPTARG
+            ;;
+        \?)
+            print_help
+            exit 0
+        ;;
+    esac
+done
+
+if [[ -z "$write_ws_name" ]] || [[ -z "$write_ws_name" ]] || [[ -z "$file_name" ]]; then
+    print_help
+    exit 0
+fi
+
+mkdir -p ~/.local/tmux-workspaces/
+
+echo "#!/usr/bin/env bash
+
+if [ "$TERM_PROGRAM" = tmux ]; then
+  echo 'In tmux'
+  exit 0
+fi
+
+ws_name=$write_ws_name
+ws_dir=$write_ws_dir
+
+if ! tmux has-session -t=\$ws_name 2> /dev/null; then
+    tmux new-session -s \$ws_name -c \$ws_dir
+else
+    tmux a -t \$ws_name
+fi" >> ~/.local/tmux-workspaces/$file_name
+
+chmod 744 ~/.local/tmux-workspaces/$file_name
